@@ -7,7 +7,7 @@ require 'chemtrails/configuration_fetcher'
 module Chemtrails
   class Railtie < Rails::Railtie
     config.before_configuration do
-      startup(Rails.application.class.parent.to_s.downcase, Rails.env, ENV) unless Rails.env.test?
+      startup(ENV['APP_NAME'] || Rails.application.class.parent.to_s.downcase, Rails.env, ENV) unless Rails.env.test?
     end
 
     def self.startup(app_name, rails_env, env)
